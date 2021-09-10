@@ -7,19 +7,22 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    private val rollButton: Button = findViewById(R.id.button)
-    private val textView: TextView = findViewById(R.id.textView)
+    lateinit var rollButton: Button
+    lateinit var textView: TextView
     private val randomNum: Int = (1..6).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        rollButton.setOnClickListener { rollDiceToast()}
+        rollButton = findViewById(R.id.button)
+        textView = findViewById(R.id.textView)
+
+        rollButton.setOnClickListener { rollDiceToast(textView)}
 
     }
 
-    private fun rollDiceToast() {
+    private fun rollDiceToast(textV : TextView) {
         Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-        textView.text = randomNum.toString()
+        textV.text = randomNum.toString()
     }
 }
